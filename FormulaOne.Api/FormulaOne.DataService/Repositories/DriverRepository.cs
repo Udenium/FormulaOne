@@ -31,15 +31,17 @@ public class DriverRepository : GenericRepository<Driver>, IDriverRepository
         try
         {
             //get my entity
-            var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            var driver = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
 
-            if (result == null)
+            if (driver == null)
             {
                 return false;
             }
 
-            result.Status = 0;
-            result.UpdatedDate = DateTime.UtcNow;
+            var result = _dbSet.Remove(driver);
+
+            driver.Status = 0;
+            driver.UpdatedDate = DateTime.UtcNow;
 
             return true;
         }
