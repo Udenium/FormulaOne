@@ -70,7 +70,7 @@ public class AchievementRepository : GenericRepository<Achievement>, IAchievemen
         try
         {
             //get my entity
-            var result = await _dbSet.FirstOrDefaultAsync(x => x.Id == achievement.Id);
+            var result = await _dbSet.FirstOrDefaultAsync(x => x.DriverId == achievement.DriverId);
 
             if (result == null)
             {

@@ -23,6 +23,9 @@ public class RequestToDomain : Profile
                     (src => DateTime.UtcNow));
         
         CreateMap<UpdateDriverAchievementRequest, Achievement>()
+            .ForMember(dest => dest.DriverId,
+                opt => opt.MapFrom
+                    (src => src.DriverId))
             .ForMember(dest => dest.RaceWins,
                 opt => opt.MapFrom
                     (src => src.Wins))
@@ -42,6 +45,9 @@ public class RequestToDomain : Profile
                     (src => DateTime.UtcNow));
         
         CreateMap<UpdateDriverRequest, Driver>()
+            .ForMember(dest => dest.Id,
+                opt => opt.MapFrom
+                    (src => src.DriverId))
             .ForMember(dest => dest.UpdatedDate, 
                 opt => opt.MapFrom
                     (src => DateTime.UtcNow));
